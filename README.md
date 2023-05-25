@@ -6,14 +6,14 @@ This repository aims to make software packages for hydrodynamic calculations eas
 
 ### Installation
 
-- Install [https://www.docker.com/products/docker-desktop/](Docker Desktop) on your computer
+- Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) on your computer
 - Create an access token for your gitlab.kuleuven.be account
-    1. Go to [https://gitlab.kuleuven.be/-/profile/personal_access_tokens](your profile's token page)
+    1. Go to [your profile's token page](https://gitlab.kuleuven.be/-/profile/personal_access_tokens)
     2. Give the token a name, e.g. 'docker container access'
     3. Choose or delete the expiration date
     4. Make a tick ✔️ at 'read_registry' (mandatory) and 'read_repository' (optional)
     5. Click on 'Create access token'. ❗❗ The token (password) will only be shown __once__ . Make sure to save it somewhere. 
-- Download the [https://gitlab.kuleuven.be/hwest/teaching/hydraulic-structures-b-kul-h0n37a/-/blob/main/startup.bat](startup.bat) file to a directory of your choice on your computer. 
+- Download the [startup.bat](https://gitlab.kuleuven.be/hwest/teaching/hydraulic-structures-b-kul-h0n37a/-/blob/main/startup.bat) file to a directory of your choice on your computer. 
     - alternatively 'git clone' this repository if you're familiar with git
 
 ### Using the software
@@ -49,7 +49,7 @@ There is also a 'work' folder in the JupyterLab environment and the Linux deskto
 
 To add additional teaching material or tutorials (Jupyter Notebooks, Python scripts, etc...), add these in the 'work' folder in an appropriate subdirectory.
 
-When changing the Dockerfile, build the new image and push it to the [https://gitlab.kuleuven.be/hwest/teaching/hydraulic-structures-b-kul-h0n37a/container_registry](Container registry) like so:
+When changing the Dockerfile, build the new image and push it to the [Container registry](https://gitlab.kuleuven.be/hwest/teaching/hydraulic-structures-b-kul-h0n37a/container_registry) like so:
 ```bash
 cd docker
 docker build -t registry.gitlab.kuleuven.be/hwest/teaching/hydraulic-structures-b-kul-h0n37a .
@@ -58,8 +58,8 @@ docker push registry.gitlab.kuleuven.be/hwest/teaching/hydraulic-structures-b-ku
 
 ### Roadmap
 
-More software may be added at a later point. See [https://mrecodehub.org/](MRE CodeHub) for a nice overview of related software projects.
+More software may be added at a later point. See [MRE CodeHub](https://mrecodehub.org/) for a nice overview of related software projects.
 
 ### Contributing
 
-To report an issue or ask for additional features or material to be included in the Docker image, feel free to [https://gitlab.kuleuven.be/hwest/teaching/hydraulic-structures-b-kul-h0n37a/-/issues](create an issue here).
+To report an issue or ask for additional features or material to be included in the Docker image, feel free to [create an issue here](https://gitlab.kuleuven.be/hwest/teaching/hydraulic-structures-b-kul-h0n37a/-/issues).
