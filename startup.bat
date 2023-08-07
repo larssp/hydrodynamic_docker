@@ -24,7 +24,7 @@ echo.
 rem make sure the 'work' folder exists
 echo ============= Preparing synchronized 'work' directory....
 IF NOT EXIST work\ mkdir work
-SET hostdir=%~dp0\work
+SET hostdir="%~dp0\work"
 SET guestdir=/home/jovyan/work
 echo ============= OK
 echo.
