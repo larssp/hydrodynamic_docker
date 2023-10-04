@@ -29,6 +29,20 @@ SET guestdir=/home/jovyan/work
 echo ============= OK
 echo.
 
+rem if the container already exists (i.e. this is not the first time
+rem running this script), skip the download part and start the 
+rem container.
+docker ps -a -q -f name=hydraulicstructures | findstr . && echo container exists || goto initialDownload
+echo.
+docker start hydraulicstructures
+IF "%errorlevel%"=="0" goto :dockerRunSuccess
+echo.
+echo starting docker container failed
+echo.
+goto :EndOfBatch
+
+
+:initialDownload
 rem Login to the docker registry at gitlab.kuleuven.be 
 echo ============= Logging in to registry.gitlab.kuleuven.be....
 docker login registry.gitlab.kuleuven.be
@@ -55,7 +69,7 @@ echo.
 
 
 rem run the docker container
-echo ============= Starting docker image ....
+echo ============= Running docker container ....
 docker run^
     -d ^
     --name hydraulicstructures ^
@@ -66,7 +80,7 @@ docker run^
     registry.gitlab.kuleuven.be/hwest/teaching/hydraulic-structures-b-kul-h0n37a:latest
 IF "%errorlevel%"=="0" goto :dockerRunSuccess
 echo.
-echo running docker image failed
+echo running docker container failed
 echo.
 goto :EndOfBatch
 :dockerRunSuccess
