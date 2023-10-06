@@ -1,6 +1,8 @@
 # docker image is based on a minimal Jupyter docker image
-FROM jupyter/minimal-notebook:2023-02-27
-
+## JupyterLab v3.6.1
+# FROM jupyter/minimal-notebook:2023-02-27
+## JupyterLab v4.0.6
+FROM jupyter/minimal-notebook:2023-10-02
 
 ###### STEPS to make gui programs in a VNC session available ##########
 
@@ -81,6 +83,9 @@ RUN pip install numpy
 
 # Add RISE for JupyterLab so users can show live slideshows from their notebooks
 # More info at https://github.com/jupyterlab-contrib/rise
+# For JupyterLab 3.x, install version prior to 0.40.0
+# RUN pip install "jupyterlab_rise<0.40.0"
+# For JupyterLab >= 4.0.0, install latest version
 RUN pip install jupyterlab_rise
 
 # GMSH
@@ -110,6 +115,10 @@ RUN conda install -c conda-forge capytaine --yes
 
 # openfast
 RUN conda install -c conda-forge openfast --yes
+# with python toolbox
+RUN git clone http://github.com/OpenFAST/python-toolbox openfast-python-toolbox && \
+    cd openfast-python-toolbox && \
+    python -m pip install -e .
 
 # Nemoh v3 from https://gitlab.com/lheea/Nemoh
 RUN wget https://gitlab.com/api/v4/projects/41313230/releases -O releases.json && \
@@ -170,6 +179,64 @@ USER ${NB_UID}
 ## install missing Packages with the UppHub
 ## and possibly fix the MatIO package. 
 
+
+
+
+# Add example and tutorial files for the software packages in one common folder 'examples'
+RUN mkdir examples
+
+## capytaine
+RUN cd examples && \
+    git clone -n --depth 1 https://github.com/capytaine/capytaine.git && \
+    cd capytaine && \
+    git checkout HEAD docs/user_manual/examples/* && \
+    mv docs/user_manual/examples/ .. && \
+    cd .. && \
+    rm -rf capytaine && \
+    mv examples capytaine && \
+    echo "* [Capytaine User Manual](https://ancell.in/capytaine/latest/user_manual/index.html)" >> references.md
+
+## BemRosetta
+RUN cd examples && \
+    git clone -n https://github.com/BEMRosetta/BEMRosetta.git --depth 1 && \
+    cd BEMRosetta && \
+    git checkout HEAD examples/* && \
+    mv examples .. && \
+    cd .. && \
+    rm -rf BEMRosetta && \
+    mv examples BEMRosetta && \
+    echo "* [BEMRosetta github page](https://bemrosetta.github.io/)" >> references.md
+
+## Nemoh
+RUN cd examples && \
+    git clone -n https://gitlab.com/lheea/Nemoh.git --depth 1 && \
+    cd Nemoh && \
+    git checkout HEAD TestCases/* && \
+    mv TestCases .. && \
+    cd .. && \
+    rm -rf Nemoh && \
+    mv TestCases Nemoh && \
+    echo "* [Nemoh release page with documentation](https://gitlab.com/lheea/Nemoh/-/releases)" >> references.md
+
+## gmsh
+RUN cd examples && \
+    git clone -n https://gitlab.onelab.info/gmsh/gmsh.git --depth 1 && \
+    cd gmsh && \
+    git checkout HEAD tutorials/* && \
+    mv tutorials .. && \
+    cd .. && \
+    rm -rf gmsh && \
+    mv tutorials gmsh && \
+    echo "* [gmsh documentation](http://gmsh.info/#Documentation)" >> references.md
+
+## openFAST
+RUN cd examples && \
+    mkdir openfast && \
+    cd openfast && \
+    git clone https://github.com/OpenFAST/r-test.git --depth 1 && \
+    cd .. && \
+    echo "* [openfast documentation](https://openfast.readthedocs.io/en/main/)" >> references.md && \
+    echo "* [openfast Python toolbox](https://github.com/OpenFAST/python-toolbox)" >> references.md
 
 
 
