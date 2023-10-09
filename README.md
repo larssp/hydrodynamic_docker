@@ -7,23 +7,29 @@ This repository aims to make software packages for hydrodynamic calculations eas
 ### Installation
 
 - Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) on your computer
-- Create an access token for your gitlab.kuleuven.be account
-    1. Go to [your profile's token page](https://gitlab.kuleuven.be/-/profile/personal_access_tokens)
-    2. Give the token a name, e.g. 'docker container access'
-    3. Choose or delete the expiration date
-    4. Make a tick ✔️ at 'read_registry' (mandatory) and 'read_repository' (optional)
-    5. Click on 'Create access token'. ❗❗ The token (password) will only be shown __once__ . Make sure to save it somewhere. 
 - Download the [startup.bat](https://gitlab.kuleuven.be/hwest/teaching/hydraulic-structures-b-kul-h0n37a/-/blob/main/startup.bat) file to a directory of your choice on your computer. 
     - alternatively 'git clone' this repository if you're familiar with git
+
+- Since this repository is made public, the following substeps are not required but left here fore future reference:
+    - Create an access token for your gitlab.kuleuven.be account
+        1. Go to [your profile's token page](https://gitlab.kuleuven.be/-/profile/personal_access_tokens)
+        2. Give the token a name, e.g. 'docker container access'
+        3. Choose or delete the expiration date
+        4. Make a tick ✔️ at 'read_registry' (mandatory) and 'read_repository' (optional)
+        5. Click on 'Create access token'. ❗❗ The token (password) will only be shown __once__ . Make sure to save it somewhere. 
+
 
 ### Using the software
 
 - Start Docker Desktop
 - Double-click the startup.bat
+- The docker container will be downloaded and started afterwards. Wait until a web browser is opened showing the JupyterLab environment. 
+
+- Since this repository is made public, the following substeps are not required but left here fore future reference:
     - On the first run Docker will ask for a username and password
         - username is your r-number, e.g. 'r012345', or u-number 'u0987654', respectively
         - password is the access token from above
-- The docker container will be downloaded and started afterwards. Wait until a web browser is opened showing the JupyterLab environment. 
+
 
 ### Starting a VNC session to run gui programs
 
