@@ -43,6 +43,8 @@ goto :EndOfBatch
 
 
 :initialDownload
+rem login not required, since repo is public and so is the registry
+goto dockerPullImage
 rem Login to the docker registry at gitlab.kuleuven.be 
 echo ============= Logging in to registry.gitlab.kuleuven.be....
 docker login registry.gitlab.kuleuven.be
@@ -56,6 +58,7 @@ echo ============= OK
 echo.
 
 rem pull the docker image from the gitlab.kuleuven.be registry.
+:dockerPullImage
 echo ============= Pulling docker image from gitlab.kuleuven.be ....
 docker pull registry.gitlab.kuleuven.be/hwest/teaching/hydraulic-structures-b-kul-h0n37a:latest
 IF "%errorlevel%"=="0" goto :dockerPullSuccess
