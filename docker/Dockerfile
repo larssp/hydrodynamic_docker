@@ -107,11 +107,12 @@ RUN git clone https://github.com/LHEEA/meshmagick.git && \
     cd meshmagick && \ 
     git checkout 3.4 && \ 
     pip install -e . && \ 
-    cd ..
 
 
 # capytaine
 RUN conda install -c conda-forge capytaine --yes
+# enable saving capytaine results to netCDF files with h5netcdf
+RUN pip install h5netcdf
 
 # openfast
 RUN conda install -c conda-forge openfast --yes
