@@ -1,5 +1,8 @@
 @echo off
 
+rem define registry url here:
+set registryurl=""
+
 rem make sure Docker Desktop is installed and running
 echo ============= Checking docker Desktop.... 
 docker version >NUL  2>NUL
@@ -11,9 +14,7 @@ echo ============= Docker not available. ===============
 echo   Please install Docker for Windows
 echo   and run Docker Desktop.
 echo.
-echo   Either from 
 echo   https://www.docker.com/products/docker-desktop/
-echo   or via the KU Leuven SET-IT Software Center
 echo ===================================================
 echo.
 goto EndOfBatch
@@ -45,30 +46,25 @@ goto :EndOfBatch
 :initialDownload
 rem login not required, since repo is public and so is the registry
 goto dockerPullImage
-rem Login to the docker registry at gitlab.kuleuven.be 
-echo ============= Logging in to registry.gitlab.kuleuven.be....
-docker login registry.gitlab.kuleuven.be
-IF "%errorlevel%"=="0" goto :dockerLoginSuccess
-echo.
-echo Docker Login failed
-echo.
-goto :EndOfBatch
-:dockerLoginSuccess
-echo ============= OK
-echo.
 
-rem pull the docker image from the gitlab.kuleuven.be registry.
+rem pull the docker image from the registry.
 :dockerPullImage
-echo ============= Pulling docker image from gitlab.kuleuven.be ....
-docker pull registry.gitlab.kuleuven.be/hwest/teaching/hydraulic-structures-b-kul-h0n37a:latest
-IF "%errorlevel%"=="0" goto :dockerPullSuccess
+echo ============= Pulling docker image from gitlab ....
 echo.
-echo docker pull failed
 echo.
+echo Link to registry was removed. Please build docker image yourself. 
+echo.
+echo. 
 goto :EndOfBatch
-:dockerPullSuccess
-echo ============= OK
-echo.
+rem docker pull %registryurl%
+rem IF "%errorlevel%"=="0" goto :dockerPullSuccess
+rem echo.
+rem echo docker pull failed
+rem echo.
+rem goto :EndOfBatch
+rem :dockerPullSuccess
+rem echo ============= OK
+rem echo.
 
 
 rem run the docker container
@@ -80,7 +76,7 @@ docker run^
     -p 5901:5901^
     -p 6901:6901^
     -p 8888:8888^
-    registry.gitlab.kuleuven.be/hwest/teaching/hydraulic-structures-b-kul-h0n37a:latest
+    %registryurl%
 IF "%errorlevel%"=="0" goto :dockerRunSuccess
 echo.
 echo running docker container failed
