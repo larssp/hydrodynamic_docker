@@ -1,18 +1,19 @@
-# Hydraulic Structures B-KUL-H0N37A
+# Assembly of hydrodynamic software packages in a Docker image
 
-This repository aims to make software packages for hydrodynamic calculations easily accessible for the examples presented in the exercises of the aforementioned course. 
+This repository aims to make software packages for hydrodynamic calculations easily accessible.
+It was set up at KU Leuven for educational purposes. This is a fork to my private github account.
 
-## Getting started for students
+## Getting started
 
 ### Installation
 
 - Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) on your computer
-- Download the [startup.bat](https://gitlab.kuleuven.be/hwest/teaching/hydraulic-structures-b-kul-h0n37a/-/blob/main/startup.bat) file to a directory of your choice on your computer. 
-    - alternatively 'git clone' this repository if you're familiar with git
+- Download the `startup.bat` file to a directory of your choice on your computer. 
+    - alternatively `git clone` this repository if you're familiar with git
 
 - Since this repository is made public, the following substeps are not required but left here fore future reference:
-    - Create an access token for your gitlab.kuleuven.be account
-        1. Go to [your profile's token page](https://gitlab.kuleuven.be/-/profile/personal_access_tokens)
+    - Create an access token for your gitlab account
+        1. Go to your profile's token page
         2. Give the token a name, e.g. 'docker container access'
         3. Choose or delete the expiration date
         4. Make a tick ✔️ at 'read_registry' (mandatory) and 'read_repository' (optional)
@@ -27,7 +28,7 @@ This repository aims to make software packages for hydrodynamic calculations eas
 
 - Since this repository is made public, the following substeps are not required but left here fore future reference:
     - On the first run Docker will ask for a username and password
-        - username is your r-number, e.g. 'r012345', or u-number 'u0987654', respectively
+        - username is your gitlab user name
         - password is the access token from above
 
 
@@ -55,11 +56,11 @@ There is also a 'work' folder in the JupyterLab environment and the Linux deskto
 
 To add additional teaching material or tutorials (Jupyter Notebooks, Python scripts, etc...), add these in the 'work' folder in an appropriate subdirectory.
 
-When changing the Dockerfile, build the new image and push it to the [Container registry](https://gitlab.kuleuven.be/hwest/teaching/hydraulic-structures-b-kul-h0n37a/container_registry) like so:
+When changing the Dockerfile, build the new image and push it to the Container registry like so:
 ```bash
 cd docker
-docker build -t registry.gitlab.kuleuven.be/hwest/teaching/hydraulic-structures-b-kul-h0n37a .
-docker push registry.gitlab.kuleuven.be/hwest/teaching/hydraulic-structures-b-kul-h0n37a
+docker build -t <registry url> .
+docker push <registry url>
 ```
 
 ### Roadmap
@@ -68,4 +69,4 @@ More software may be added at a later point. See [MRE CodeHub](https://mrecodehu
 
 ### Contributing
 
-To report an issue or ask for additional features or material to be included in the Docker image, feel free to [create an issue here](https://gitlab.kuleuven.be/hwest/teaching/hydraulic-structures-b-kul-h0n37a/-/issues).
+To report an issue or ask for additional features or material to be included in the Docker image, feel free to create an issue.
